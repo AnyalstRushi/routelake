@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "routelake"
+version = "1.0.0"
+description = "Cost-aware lakehouse control plane: contract-validated pipeline, Snowflake/Databricks workload router, billing anomaly detection."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Analyst Rushi" }]
+dependencies = []
+
+[project.scripts]
+routelake = "routelake.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["routelake*"]

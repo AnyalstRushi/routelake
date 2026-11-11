@@ -1,0 +1,11 @@
+{
+  "workloads": [
+    {"name": "exec_dashboard_refresh", "kind": "sql_bi",      "scan_gb": 2,    "runs_per_day": 96,  "latency_slo_s": 20,    "concurrency": 20},
+    {"name": "adhoc_analyst_queries",  "kind": "sql_bi",      "scan_gb": 5,    "runs_per_day": 300, "latency_slo_s": 30,    "concurrency": 6},
+    {"name": "hourly_orders_microbatch","kind": "batch_etl",  "scan_gb": 8,    "runs_per_day": 24,  "latency_slo_s": 600,   "concurrency": 1},
+    {"name": "nightly_sessionization", "kind": "batch_etl",   "scan_gb": 400,  "runs_per_day": 1,   "latency_slo_s": 7200,  "concurrency": 1},
+    {"name": "weekly_backfill_rebuild","kind": "batch_etl",   "scan_gb": 2500, "runs_per_day": 1,   "latency_slo_s": 14400, "concurrency": 1},
+    {"name": "churn_model_training",   "kind": "ml_training", "scan_gb": 120,  "runs_per_day": 1,   "latency_slo_s": 10800, "concurrency": 1},
+    {"name": "feature_store_refresh",  "kind": "ml_training", "scan_gb": 60,   "runs_per_day": 4,   "latency_slo_s": 3600,  "concurrency": 1}
+  ]
+}

@@ -1,0 +1,371 @@
+{
+  "project": "RouteLake",
+  "author": "Analyst Rushi",
+  "pipeline": {
+    "ground_truth": {
+      "emitted": 5150,
+      "unique_events": 5000,
+      "defects": 200,
+      "duplicates": 150,
+      "late": 100,
+      "valid_unique": 4800,
+      "defect_by_kind": {
+        "missing_user_id": 40,
+        "negative_price": 40,
+        "unknown_event_type": 40,
+        "bad_timestamp": 40,
+        "zero_quantity": 40
+      }
+    },
+    "batches": [
+      {
+        "batch_id": "batch-01",
+        "received": 1030,
+        "silver_inserted": 981,
+        "duplicates": 3,
+        "quarantined": 46,
+        "late": 24,
+        "replayed": false
+      },
+      {
+        "batch_id": "batch-02",
+        "received": 1030,
+        "silver_inserted": 972,
+        "duplicates": 14,
+        "quarantined": 44,
+        "late": 19,
+        "replayed": false
+      },
+      {
+        "batch_id": "batch-03",
+        "received": 1030,
+        "silver_inserted": 969,
+        "duplicates": 25,
+        "quarantined": 36,
+        "late": 13,
+        "replayed": false
+      },
+      {
+        "batch_id": "batch-04",
+        "received": 1030,
+        "silver_inserted": 968,
+        "duplicates": 30,
+        "quarantined": 32,
+        "late": 20,
+        "replayed": false
+      },
+      {
+        "batch_id": "batch-05",
+        "received": 1030,
+        "silver_inserted": 910,
+        "duplicates": 78,
+        "quarantined": 42,
+        "late": 24,
+        "replayed": false
+      }
+    ],
+    "replay_was_noop": true,
+    "silver_rows": 4800,
+    "quarantine_rows": 200,
+    "late_rows": 100,
+    "duplicates_dropped": 150,
+    "quarantine_reasons": {
+      "event_ts:bad_timestamp": 40,
+      "event_type:not_in_enum": 40,
+      "price:below_min": 40,
+      "quantity:below_min": 40,
+      "user_id:missing": 40
+    },
+    "total_revenue": 231580.55,
+    "funnel": [
+      {
+        "category": "beauty",
+        "views": 639,
+        "carts": 190,
+        "purchases": 84,
+        "view_to_cart_pct": 29.73
+      },
+      {
+        "category": "electronics",
+        "views": 668,
+        "carts": 183,
+        "purchases": 79,
+        "view_to_cart_pct": 27.4
+      },
+      {
+        "category": "fashion",
+        "views": 668,
+        "carts": 207,
+        "purchases": 88,
+        "view_to_cart_pct": 30.99
+      },
+      {
+        "category": "grocery",
+        "views": 687,
+        "carts": 196,
+        "purchases": 91,
+        "view_to_cart_pct": 28.53
+      },
+      {
+        "category": "home",
+        "views": 708,
+        "carts": 213,
+        "purchases": 99,
+        "view_to_cart_pct": 30.08
+      }
+    ],
+    "reconciliation_failures": [],
+    "matches_ground_truth": true
+  },
+  "routing": {
+    "disclaimer": "Illustrative planning assumptions, NOT vendor quotes or measured benchmarks. Replace with your contract rates and run `python -m routelake calibrate` on your own measurements.",
+    "decisions": [
+      {
+        "workload": "exec_dashboard_refresh",
+        "kind": "sql_bi",
+        "engine": "snowflake",
+        "size": "S",
+        "runtime_s": 13.1,
+        "daily_usd": 57.6,
+        "feasible": true,
+        "reason": "snowflake S is the cheapest option meeting the SLO.",
+        "alternatives": {
+          "snowflake": {
+            "size": "S",
+            "runtime_s": 13.1,
+            "daily_usd": 57.6,
+            "feasible": true
+          },
+          "databricks": {
+            "size": "L",
+            "runtime_s": 45.2,
+            "daily_usd": 268.8,
+            "feasible": false
+          }
+        }
+      },
+      {
+        "workload": "adhoc_analyst_queries",
+        "kind": "sql_bi",
+        "engine": "snowflake",
+        "size": "S",
+        "runtime_s": 29.7,
+        "daily_usd": 60.0,
+        "feasible": true,
+        "reason": "snowflake S is the cheapest option meeting the SLO.",
+        "alternatives": {
+          "snowflake": {
+            "size": "S",
+            "runtime_s": 29.7,
+            "daily_usd": 60.0,
+            "feasible": true
+          },
+          "databricks": {
+            "size": "L",
+            "runtime_s": 53.0,
+            "daily_usd": 420.0,
+            "feasible": false
+          }
+        }
+      },
+      {
+        "workload": "hourly_orders_microbatch",
+        "kind": "batch_etl",
+        "engine": "snowflake",
+        "size": "XS",
+        "runtime_s": 162.0,
+        "daily_usd": 4.44,
+        "feasible": true,
+        "reason": "snowflake XS is the cheapest option meeting the SLO.",
+        "alternatives": {
+          "snowflake": {
+            "size": "XS",
+            "runtime_s": 162.0,
+            "daily_usd": 4.44,
+            "feasible": true
+          },
+          "databricks": {
+            "size": "2XS",
+            "runtime_s": 153.6,
+            "daily_usd": 5.11,
+            "feasible": true
+          }
+        }
+      },
+      {
+        "workload": "nightly_sessionization",
+        "kind": "batch_etl",
+        "engine": "databricks",
+        "size": "2XS",
+        "runtime_s": 5722.2,
+        "daily_usd": 4.54,
+        "feasible": true,
+        "reason": "databricks 2XS meets the SLO at $4.54/day vs $7.50/day on snowflake.",
+        "alternatives": {
+          "snowflake": {
+            "size": "S",
+            "runtime_s": 4440.3,
+            "daily_usd": 7.5,
+            "feasible": true
+          },
+          "databricks": {
+            "size": "2XS",
+            "runtime_s": 5722.2,
+            "daily_usd": 4.54,
+            "feasible": true
+          }
+        }
+      },
+      {
+        "workload": "weekly_backfill_rebuild",
+        "kind": "batch_etl",
+        "engine": "databricks",
+        "size": "S",
+        "runtime_s": 13998.7,
+        "daily_usd": 32.94,
+        "feasible": true,
+        "reason": "databricks S meets the SLO at $32.94/day vs $57.33/day on snowflake.",
+        "alternatives": {
+          "snowflake": {
+            "size": "L",
+            "runtime_s": 8539.8,
+            "daily_usd": 57.33,
+            "feasible": true
+          },
+          "databricks": {
+            "size": "S",
+            "runtime_s": 13998.7,
+            "daily_usd": 32.94,
+            "feasible": true
+          }
+        }
+      },
+      {
+        "workload": "churn_model_training",
+        "kind": "ml_training",
+        "engine": "databricks",
+        "size": "2XS",
+        "runtime_s": 4964.6,
+        "daily_usd": 3.95,
+        "feasible": true,
+        "reason": "databricks 2XS meets the SLO at $3.95/day vs $29.75/day on snowflake.",
+        "alternatives": {
+          "snowflake": {
+            "size": "M",
+            "runtime_s": 8866.2,
+            "daily_usd": 29.75,
+            "feasible": true
+          },
+          "databricks": {
+            "size": "2XS",
+            "runtime_s": 4964.6,
+            "daily_usd": 3.95,
+            "feasible": true
+          }
+        }
+      },
+      {
+        "workload": "feature_store_refresh",
+        "kind": "ml_training",
+        "engine": "databricks",
+        "size": "2XS",
+        "runtime_s": 2502.3,
+        "daily_usd": 8.16,
+        "feasible": true,
+        "reason": "databricks 2XS meets the SLO at $8.16/day vs $67.22/day on snowflake.",
+        "alternatives": {
+          "snowflake": {
+            "size": "L",
+            "runtime_s": 2460.9,
+            "daily_usd": 67.22,
+            "feasible": true
+          },
+          "databricks": {
+            "size": "2XS",
+            "runtime_s": 2502.3,
+            "daily_usd": 8.16,
+            "feasible": true
+          }
+        }
+      }
+    ],
+    "summary": {
+      "routed_daily_usd": 171.6403895193355,
+      "routed_monthly_usd": 5149.211685580065,
+      "routed_slo_misses": 0,
+      "default_engine": "snowflake",
+      "all_on_engine": {
+        "snowflake": {
+          "daily_usd": 283.84953875637444,
+          "slo_misses": 0
+        },
+        "databricks": {
+          "daily_usd": 743.5084127136118,
+          "slo_misses": 2
+        }
+      },
+      "savings_vs_default_pct": 39.53120717710486,
+      "engine_mix": {
+        "snowflake": 3,
+        "databricks": 4
+      }
+    }
+  },
+  "billing": {
+    "records": 810,
+    "skipped_non_dbu_rows": 0,
+    "total_usd": 18122.23,
+    "daily_total_usd": {
+      "2026-10-01": 589.1,
+      "2026-10-02": 585.38,
+      "2026-10-03": 574.36,
+      "2026-10-04": 592.63,
+      "2026-10-05": 576.88,
+      "2026-10-06": 575.59,
+      "2026-10-07": 593.16,
+      "2026-10-08": 557.35,
+      "2026-10-09": 560.2,
+      "2026-10-10": 590.66,
+      "2026-10-11": 593.11,
+      "2026-10-12": 596.12,
+      "2026-10-13": 636.9,
+      "2026-10-14": 588.84,
+      "2026-10-15": 990.69,
+      "2026-10-16": 585.24,
+      "2026-10-17": 620.05,
+      "2026-10-18": 579.77,
+      "2026-10-19": 606.32,
+      "2026-10-20": 603.72,
+      "2026-10-21": 566.25,
+      "2026-10-22": 724.0,
+      "2026-10-23": 557.47,
+      "2026-10-24": 573.46,
+      "2026-10-25": 575.5,
+      "2026-10-26": 582.97,
+      "2026-10-27": 572.02,
+      "2026-10-28": 609.46,
+      "2026-10-29": 571.89,
+      "2026-10-30": 593.13
+    },
+    "anomalies": [
+      {
+        "day": "2026-10-22",
+        "engine": "snowflake",
+        "resource": "ADHOC_WH",
+        "usd": 150.76,
+        "baseline_usd": 16.69,
+        "score": 247.8,
+        "explanation": "snowflake/ADHOC_WH spent $150.76 on 2026-10-22 vs a typical $16.69 (9.0x); robust z=247.8"
+      },
+      {
+        "day": "2026-10-15",
+        "engine": "databricks",
+        "resource": "ALL_PURPOSE_COMPUTE",
+        "usd": 490.29,
+        "baseline_usd": 66.3,
+        "score": 63.1,
+        "explanation": "databricks/ALL_PURPOSE_COMPUTE spent $490.29 on 2026-10-15 vs a typical $66.30 (7.4x); robust z=63.1"
+      }
+    ]
+  }
+}

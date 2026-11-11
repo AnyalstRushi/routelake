@@ -1,0 +1,15 @@
+{
+  "name": "events",
+  "version": 1,
+  "additional_fields": "reject",
+  "fields": {
+    "event_id":   {"type": "string",    "required": true, "min_length": 1},
+    "user_id":    {"type": "string",    "required": true, "min_length": 1},
+    "event_type": {"type": "string",    "required": true, "enum": ["view", "add_to_cart", "purchase"]},
+    "category":   {"type": "string",    "required": true, "enum": ["electronics", "fashion", "grocery", "home", "beauty"]},
+    "price":      {"type": "number",    "required": true, "min": 0},
+    "quantity":   {"type": "integer",   "required": true, "min": 1},
+    "event_ts":   {"type": "timestamp", "required": true},
+    "ingest_ts":  {"type": "timestamp", "required": true}
+  }
+}

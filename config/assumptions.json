@@ -1,0 +1,29 @@
+{
+  "disclaimer": "Illustrative planning assumptions, NOT vendor quotes or measured benchmarks. Replace with your contract rates and run `python -m routelake calibrate` on your own measurements.",
+  "currency": "USD",
+  "scaling_exponent": 0.85,
+  "default_engine": "snowflake",
+  "min_savings_pct_to_route": 10.0,
+  "engines": {
+    "snowflake": {
+      "usd_per_unit_hour": 3.0,
+      "usd_per_unit_hour_note": "usd per credit",
+      "min_billed_seconds": 60,
+      "auto_suspend_seconds": 60,
+      "startup_seconds": 2,
+      "max_concurrency_per_cluster": 8,
+      "sizes": {"XS": 1, "S": 2, "M": 4, "L": 8, "XL": 16},
+      "gb_per_min_per_unit": {"sql_bi": 6.0, "batch_etl": 3.0, "ml_training": 0.25}
+    },
+    "databricks": {
+      "usd_per_unit_hour": 0.7,
+      "usd_per_unit_hour_note": "usd per DBU, all-in (serverless-style)",
+      "min_billed_seconds": 60,
+      "auto_suspend_seconds": 120,
+      "startup_seconds": 40,
+      "max_concurrency_per_cluster": 10,
+      "sizes": {"2XS": 4, "XS": 6, "S": 12, "M": 24, "L": 40},
+      "gb_per_min_per_unit": {"sql_bi": 1.0, "batch_etl": 1.3, "ml_training": 0.45}
+    }
+  }
+}

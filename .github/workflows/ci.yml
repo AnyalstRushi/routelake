@@ -1,0 +1,24 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile
+        run: python -m compileall -q routelake tests
+      - name: Unit + end-to-end tests (warnings are errors)
+        run: python -W error -m unittest discover -s tests -v
+      - name: Demo must exit 0 (ground-truth match, reconciliation clean, replay no-op)
+        run: python -m routelake demo --out "$RUNNER_TEMP/reports" --data "$RUNNER_TEMP/data"
