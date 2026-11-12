@@ -104,7 +104,7 @@ routelake/            package (stdlib only)
 config/               assumptions + workload catalog
 contracts/            events_v1.json
 cloud/                export SQL for real accounts + validation checklist
-docs/                 architecture, cost model, contracts, runbook, limitations, interview guide
+docs/                 deck (RouteLake_Analyst_Rushi.pptx), architecture, cost model, contracts, runbook, limitations, interview guide
 tests/                73 tests
 reports/, data/sample generated sample outputs (kept in sync by a test)
 ```
