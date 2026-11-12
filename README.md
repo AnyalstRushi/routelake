@@ -1,9 +1,13 @@
 # RouteLake
 
+[![CI](https://github.com/AnyalstRushi/routelake/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/AnyalstRushi/routelake/actions/workflows/ci.yml)
+
 **One dataset. Two engines. One cost brain.**
 A cost-aware lakehouse control plane that decides *where* each workload should run (Snowflake or Databricks), proves its data is trustworthy before it runs, and catches runaway spend after.
 
 *Designed and built by **Analyst Rushi**.*
+
+**[View the portfolio deck (PPTX)](docs/RouteLake_Analyst_Rushi.pptx)** — the original presentation is included in the repository.
 
 ---
 
