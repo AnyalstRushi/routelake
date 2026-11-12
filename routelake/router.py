@@ -6,6 +6,7 @@ saving, so decisions do not flap on tiny cost differences.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from math import fsum
 
 from .cost_model import Assumptions, Plan, Workload, best_plan
 
@@ -56,11 +57,11 @@ def route_all(workloads: list[Workload], a: Assumptions) -> list[Decision]:
 
 
 def summarize(decisions: list[Decision], a: Assumptions) -> dict:
-    routed = sum(d.chosen.daily_usd for d in decisions)
+    routed = fsum(d.chosen.daily_usd for d in decisions)
     per_engine = {}
     for name in a.engines:
         per_engine[name] = {
-            "daily_usd": sum(d.alternatives[name].daily_usd for d in decisions),
+            "daily_usd": fsum(d.alternatives[name].daily_usd for d in decisions),
             "slo_misses": sum(1 for d in decisions if not d.alternatives[name].feasible),
         }
     base = per_engine[a.default_engine]["daily_usd"]
