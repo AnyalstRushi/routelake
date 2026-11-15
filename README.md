@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/routelake-hero.svg" alt="RouteLake: one dataset, two engines, one cost brain" width="100%">
+<img src="routelake-hero.svg" alt="RouteLake: one dataset, two engines, one cost brain" width="100%">
 
 <br>
 
@@ -70,7 +70,7 @@ Routed: $171.64/day vs all-on-snowflake: $283.85/day (39.5% lower, 0 SLO misses)
 
 ## 🧭 How it works
 
-<img src="assets/routelake-flow.svg" alt="RouteLake architecture: a data plane for correctness and a control plane for decisions" width="100%">
+<img src="routelake-flow.svg" alt="RouteLake architecture: a data plane for correctness and a control plane for decisions" width="100%">
 
 <details>
 <summary>Text version of the diagram (Mermaid)</summary>
