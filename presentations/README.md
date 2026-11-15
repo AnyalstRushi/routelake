@@ -1,34 +1,39 @@
-# RouteLake presentation assets
+# RouteLake presentation pack
 
-The executive presentation and technical case study are maintained as companion portfolio artifacts to the repository.
+This folder documents the executive presentation that accompanies the RouteLake technical project.
 
-## Recommended repository placement
+## Executive deck
 
-- `docs/RouteLake_2026_Technical_Case_Study.md` — version-controlled technical narrative (source of truth for implementation boundaries).
-- `presentations/RouteLake_2026_Executive_16_Slides.pptx` — editable executive deck.
-- `docs/RouteLake_2026_Technical_Case_Study.docx` — editable document edition.
+**RouteLake 2026 — Executive Project Walkthrough**  
+16 editable slides covering:
 
-The editable PPTX and DOCX are currently supplied as companion deliverables. The Markdown case study remains in this repository so the technical content is reviewable in GitHub diffs.
+1. Project thesis and operating problem
+2. Why data trust, workload placement and spend belong together
+3. Reference architecture and control/data planes
+4. Bronze → contract gate → Silver → Gold pipeline
+5. Data-quality controls, quarantine and idempotency
+6. Workload catalog, cost model and SLO-aware routing
+7. Snowflake / Databricks candidate comparison
+8. Billing normalization and anomaly detection
+9. Deterministic demo evidence and test strategy
+10. Illustrative cost scenario and its assumptions
+11. Failure modes, maturity boundaries and limitations
+12. Roadmap and validation plan
 
-## Presentation narrative
+The deck is an executive narrative, not proof of live cloud integration. The current code is a local Python + SQLite prototype. The modeled cost scenario is illustrative and must be calibrated against measured account data.
 
-1. RouteLake thesis and product framing.
-2. The operating problem: trust, placement and spend.
-3. Two-plane architecture and feedback loop.
-4. Data contracts and quarantine outcomes.
-5. Medallion processing and replay safety.
-6. Cost model assumptions and formula.
-7. SLO-aware routing and hysteresis.
-8. Billing normalization and anomaly detection.
-9. Deterministic evidence and test strategy.
-10. Reproducible local demo.
-11. Implemented capabilities versus roadmap.
-12. Limitations and validation boundaries.
-13. Open-source operating model.
-14. Live-account validation plan.
-15. Iceberg and orchestration roadmap.
-16. Closing thesis and project links.
+## Technical companion
 
-## Accuracy rule
+- [Technical case study — Markdown](../docs/RouteLake_2026_Technical_Case_Study.md)
+- [Architecture](../docs/ARCHITECTURE.md)
+- [Limitations](../docs/LIMITATIONS.md)
+- [Roadmap](../docs/ROADMAP.md)
 
-The deck must distinguish the local Python/SQLite implementation from live cloud integrations. The 39.5% modelled cost difference is illustrative, not measured savings or a vendor benchmark. Do not describe Apache Iceberg interoperability, production streaming or live Snowflake/Databricks execution as shipped.
+## Artifact placement
+
+The editable PPTX and DOCX companion files have been generated and supplied separately with the RouteLake 2026 deliverables. They are not yet committed as binary files in this repository. When adding them, use these canonical paths:
+
+- `presentations/RouteLake_2026_Executive_16_Slides.pptx`
+- `docs/RouteLake_2026_Technical_Case_Study.docx`
+
+Keep the Markdown case study as the reviewable source of truth for technical claims and implementation boundaries.
