@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 620" role="img" aria-labelledby="title desc">
+  <title id="title">RouteLake control plane overview</title>
+  <desc id="desc">A dark, polished architecture preview showing data trust, workload routing and spend intelligence connected by a control plane.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#0f2037"/></linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#35d0ba"/><stop offset=".5" stop-color="#8b7cff"/><stop offset="1" stop-color="#ffbf69"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000" flood-opacity=".28"/></filter>
+    <style>
+      .k{font:600 16px Inter,Segoe UI,sans-serif;letter-spacing:2px;fill:#92a8c2}
+      .h{font:700 34px Inter,Segoe UI,sans-serif;fill:#f7fbff}
+      .t{font:500 18px Inter,Segoe UI,sans-serif;fill:#d3deeb}
+      .s{font:500 14px Inter,Segoe UI,sans-serif;fill:#9db3c9}
+      .pill{font:700 14px Inter,Segoe UI,sans-serif;letter-spacing:1.4px}
+    </style>
+  </defs>
+  <rect width="1440" height="620" rx="28" fill="url(#bg)"/>
+  <circle cx="1280" cy="80" r="220" fill="#8b7cff" opacity=".10"/>
+  <circle cx="110" cy="600" r="250" fill="#35d0ba" opacity=".08"/>
+  <path d="M80 145H1360" stroke="#2a4058" opacity=".7"/>
+  <text x="80" y="82" class="k">ROUTELAKE / CONTROL PLANE PREVIEW</text>
+  <text x="80" y="132" class="h">Trust the data. Route the workload. Explain the cost.</text>
+  <text x="80" y="174" class="t">A local-first prototype that keeps correctness, placement and spend in one inspectable loop.</text>
+  <g filter="url(#shadow)">
+    <rect x="80" y="230" width="380" height="270" rx="22" fill="#10263b" stroke="#2f526b"/>
+    <rect x="530" y="230" width="380" height="270" rx="22" fill="#171e42" stroke="#524e8d"/>
+    <rect x="980" y="230" width="380" height="270" rx="22" fill="#302633" stroke="#785b55"/>
+  </g>
+  <text x="115" y="274" class="k" fill="#35d0ba">01 / DATA TRUST</text>
+  <text x="115" y="325" class="h">Contract gate</text>
+  <text x="115" y="361" class="t">Bronze → Silver → Gold</text>
+  <text x="115" y="405" class="s">quarantine · dedupe · late events</text>
+  <rect x="115" y="440" width="160" height="34" rx="17" fill="#35d0ba" opacity=".16"/>
+  <text x="195" y="462" text-anchor="middle" class="pill" fill="#6de6d5">5,150 FIXTURE ROWS</text>
+
+  <text x="565" y="274" class="k">02 / WORKLOAD ROUTING</text>
+  <text x="565" y="325" class="h">Cost brain</text>
+  <text x="565" y="361" class="t">SLO-aware engine choice</text>
+  <text x="565" y="405" class="s">Snowflake ↔ Databricks candidates</text>
+  <rect x="565" y="440" width="168" height="34" rx="17" fill="#8b7cff" opacity=".18"/>
+  <text x="649" y="462" text-anchor="middle" class="pill" fill="#bdb6ff">CONFIG-DRIVEN</text>
+
+  <text x="1015" y="274" class="k">03 / SPEND INTELLIGENCE</text>
+  <text x="1015" y="325" class="h">Signal loop</text>
+  <text x="1015" y="361" class="t">Normalize → baseline → explain</text>
+  <text x="1015" y="405" class="s">median / MAD anomaly detection</text>
+  <rect x="1015" y="440" width="180" height="34" rx="17" fill="#ffbf69" opacity=".16"/>
+  <text x="1105" y="462" text-anchor="middle" class="pill" fill="#ffd596">FIXTURE EXAMPLES</text>
+
+  <path d="M460 365H530M910 365H980" stroke="url(#glow)" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="495" cy="365" r="7" fill="#35d0ba"/><circle cx="945" cy="365" r="7" fill="#8b7cff"/>
+  <text x="80" y="570" class="s">Implemented locally with Python + SQLite · live vendor execution and shared Iceberg remain roadmap work</text>
+</svg>
