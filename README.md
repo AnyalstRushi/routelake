@@ -8,13 +8,14 @@
 
 **A local-first lakehouse control-plane prototype for data trust, workload placement and spend intelligence.**
 
-[![CI](https://github.com/AnyalstRushi/routelake/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/AnyalstRushi/routelake/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![Core dependencies](https://img.shields.io/badge/core%20dependencies-zero-13A889)
-![Model](https://img.shields.io/badge/model-config--driven-7C6FE8)
-[![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/AnyalstRushi/routelake/ci.yml?branch=main&style=flat-square&label=CI&logo=githubactions&logoColor=white)](https://github.com/AnyalstRushi/routelake/actions/workflows/ci.yml)
+[![Pages](https://img.shields.io/website?url=https%3A%2F%2Fanyalstrushi.github.io%2Froutelake%2F&style=flat-square&label=Pages)](https://anyalstrushi.github.io/routelake/)
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
+![Core dependencies](https://img.shields.io/badge/core%20dependencies-zero-13A889?style=flat-square)
+![Decision model](https://img.shields.io/badge/decision%20model-config--driven-7C6FE8?style=flat-square)
+[![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)](LICENSE)
 
-[**Project website**](https://anyalstrushi.github.io/routelake/) · [Quickstart](#run-the-demo) · [Architecture](#how-it-works) · [Technical report](docs/RouteLake_2026_Technical_Case_Study.md) · [Roadmap](docs/ROADMAP.md) · [Contributing](CONTRIBUTING.md)
+[**Live project site**](https://anyalstrushi.github.io/routelake/) · [Quickstart](#run-the-demo) · [Preview](#project-preview) · [Architecture](#how-it-works) · [Evidence](#verified-local-evidence) · [Docs](#docs-navigation)
 
 </div>
 
@@ -23,6 +24,18 @@
 > **The problem:** data teams need to trust incoming data, decide where workloads should run, and understand why platform spend changes. RouteLake brings these decisions into one explainable control-plane prototype.
 
 > **Honest maturity note:** the current implementation runs locally with Python and SQLite. Live Snowflake/Databricks execution, production-scale performance, and shared Apache Iceberg interoperability are not yet validated. Cost figures below are illustrative model outputs, not measured savings or vendor quotes.
+
+## Project preview
+
+<div align="center">
+
+<a href="docs/RouteLake_Analyst_Rushi.pptx">
+  <img src="assets/routelake-control-plane.svg" alt="RouteLake control plane preview — click to open the editable source deck" width="100%">
+</a>
+
+**[Open the editable source deck](docs/RouteLake_Analyst_Rushi.pptx)** · **[Read the technical case study](docs/RouteLake_2026_Technical_Case_Study.md)**
+
+</div>
 
 ## Run the demo
 
@@ -47,7 +60,7 @@ The end-to-end demo writes `reports/latest.md` and `reports/latest.json`. The de
 | **Spend intelligence** | Normalizes Snowflake and Databricks billing exports; detects unusual spend with median/MAD baselines | `routelake/billing.py`, `anomaly.py` |
 | **Calibration** | Replaces planning assumptions with measured runtime samples | `routelake/calibrate.py` |
 
-## Evidence from the seeded local scenario
+## Verified local evidence
 
 <div align="center">
 
@@ -58,10 +71,13 @@ The end-to-end demo writes `reports/latest.md` and `reports/latest.json`. The de
 | Duplicates removed | **150** |
 | Late events flagged | **100** |
 | Test suite | **73 tests reported** |
+| Routing scenario | **3 Snowflake / 4 Databricks workloads · 0 SLO misses** |
 
 </div>
 
-### Modelled cost comparison
+These are repository-local checks and deck-reported fixture results, not production-scale benchmarks or customer outcomes.
+
+### Illustrative cost comparison — assumptions, not savings
 
 | Scenario | Estimated daily cost |
 |---|---:|
@@ -69,9 +85,20 @@ The end-to-end demo writes `reports/latest.md` and `reports/latest.json`. The de
 | Routed engine mix | **$171.64/day** |
 | Difference | **39.5% lower in this configured scenario** |
 
-This is a reproducible configuration example only. It is not a benchmark, a quote, or a claim of realized savings. Calibrate with measured account data before using any cost estimate for decisions. Billing anomalies in the demo are seeded fixtures, not live incidents.
+The values above come from configured model assumptions in the source deck and repository. They are not vendor pricing, a benchmark, a quote or a claim of realized savings. Calibrate with measured account data before using any estimate for decisions.
+
+### Anomaly examples — fixture data, not incidents
+
+| Fixture date | Workload | Observed vs typical | Robust z-score |
+|---|---|---:|---:|
+| 2026-10-22 | Snowflake `ADHOC_WH` | **$151 vs $17 · 9.0×** | **248** |
+| 2026-10-15 | Databricks `ALL_PURPOSE_COMPUTE` | **$490 vs $66 · 7.4×** | **63** |
+
+These are planted examples from the local scenario. They are not live account alerts or customer incidents.
 
 ## How it works
+
+<img src="assets/routelake-control-plane.svg" alt="RouteLake data, routing and spend intelligence architecture" width="100%">
 
 ```mermaid
 flowchart TB
@@ -101,7 +128,30 @@ flowchart TB
 - Reconciliation checks batch arithmetic and Gold-versus-Silver aggregates.
 - Routing decisions expose feasibility and use a hysteresis threshold to avoid unnecessary flips.
 
-See [Architecture](docs/ARCHITECTURE.md), [Limitations](docs/LIMITATIONS.md), and the [technical case study](docs/RouteLake_2026_Technical_Case_Study.md) for implementation details and boundaries.
+## Maturity and boundaries
+
+| Area | Current status |
+|---|---|
+| Local correctness, routing arithmetic and anomaly logic | Implemented and exercised locally |
+| Snowflake / Databricks execution | **Not validated against live vendor accounts** |
+| Shared Apache Iceberg tables | **Roadmap; not implemented** |
+| Production-scale streaming and operations | **Not validated; SQLite prototype** |
+| Cost and throughput figures | **Illustrative assumptions; calibrate before use** |
+
+See [Architecture](docs/ARCHITECTURE.md), [Cost model](docs/COST_MODEL.md), and [Limitations](docs/LIMITATIONS.md) for implementation boundaries.
+
+## Docs navigation
+
+| Resource | Why open it |
+|---|---|
+| [Technical case study](docs/RouteLake_2026_Technical_Case_Study.md) | End-to-end engineering narrative and evidence boundary |
+| [Architecture](docs/ARCHITECTURE.md) | Data plane, control plane and decision flow |
+| [Data contracts](docs/DATA_CONTRACTS.md) | Contract rules and quarantine semantics |
+| [Cost model](docs/COST_MODEL.md) | Runtime, billing and routing assumptions |
+| [Runbook](docs/RUNBOOK.md) | Reproducible local commands and operational notes |
+| [Limitations](docs/LIMITATIONS.md) | What is not verified yet |
+| [Roadmap](docs/ROADMAP.md) | Next steps toward guarded cloud validation |
+| [Source presentation](docs/RouteLake_Analyst_Rushi.pptx) | Editable deck used as the factual source |
 
 ## Repository map
 
@@ -115,14 +165,6 @@ See [Architecture](docs/ARCHITECTURE.md), [Limitations](docs/LIMITATIONS.md), an
 | `docs/` | Architecture, limitations, runbook, technical report and roadmap |
 | `site/` | Responsive GitHub Pages project experience |
 | `presentations/` | Executive-deck narrative and companion-artifact guide |
-
-## Project resources
-
-- **[Open the RouteLake project website](https://anyalstrushi.github.io/routelake/)**
-- **[Technical case study (Markdown)](docs/RouteLake_2026_Technical_Case_Study.md)**
-- **[Architecture](docs/ARCHITECTURE.md)** · **[Limitations](docs/LIMITATIONS.md)** · **[Roadmap](docs/ROADMAP.md)**
-- **[Open-source readiness](docs/OPEN_SOURCE_READINESS.md)** · **[Presentation guide](presentations/README.md)**
-- **[Original source presentation](docs/RouteLake_Analyst_Rushi.pptx)**
 
 ## Roadmap
 
