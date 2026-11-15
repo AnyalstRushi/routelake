@@ -77,7 +77,6 @@ cd routelake
 python -W error -m unittest discover -s tests -v
 python -m routelake demo
 python -m routelake route
-python -m routelake anomalies
 ```
 
 Inspect `reports/latest.md` and `reports/latest.json` after the demo.
