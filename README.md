@@ -14,7 +14,7 @@
 ![Model](https://img.shields.io/badge/model-config--driven-7C6FE8)
 [![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
 
-[**Project website**](https://anyalstrushi.github.io/routelake/) · [Quickstart](#run-the-demo) · [Architecture](#how-it-works) · [Technical report](docs/RouteLake_2026_Technical_Case_Study.md) · [Roadmap](docs/ROADMAP.md) · [Contributing](CONTRIBUTING.md)
+[**Live cinematic presentation**](https://anyalstrushi.github.io/routelake/presentation.html) · [Presentation source](presentations/routelake-cinematic.html) · [**Project website**](https://anyalstrushi.github.io/routelake/) · [Quickstart](#run-the-demo) · [Architecture](#how-it-works) · [Technical report](docs/RouteLake_2026_Technical_Case_Study.md) · [Roadmap](docs/ROADMAP.md) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
