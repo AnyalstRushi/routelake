@@ -7,7 +7,18 @@ A cost-aware lakehouse control plane that decides *where* each workload should r
 
 *Designed and built by **Analyst Rushi**.*
 
-**[View the portfolio deck (PPTX)](docs/RouteLake_Analyst_Rushi.pptx)** — the original presentation is included in the repository.
+## 2026 flagship experience
+
+RouteLake now includes a standalone, responsive architecture landing page and expanded open-source project guidance.
+
+- **[Technical case study](docs/RouteLake_2026_Technical_Case_Study.md)** — implementation boundaries, data quality guarantees, routing model, anomaly logic and validation roadmap.
+- **[Interactive landing page source](site/index.html)** — open-source project overview with a CSS-animated control-plane motif.
+- **[Roadmap](docs/ROADMAP.md)** · [Open-source readiness](docs/OPEN_SOURCE_READINESS.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+The landing page is a project explainer, not a live cloud console. GitHub Pages deployment requires Pages to be enabled with **GitHub Actions** as the build source.
+
+
+**[View the original portfolio deck (PPTX)](docs/RouteLake_Analyst_Rushi.pptx)** — the source presentation is included in the repository. A refreshed 16-slide executive deck is also supplied with the RouteLake 2026 deliverables.
 
 ---
 
